@@ -25,10 +25,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Aplication.Model\Aplication.Domain.csproj" />
+    <ProjectReference Include="..\Aplication.Service\Aplication.Service.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="bd\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

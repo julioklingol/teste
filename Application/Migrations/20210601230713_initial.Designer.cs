@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Application.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20210601010832_initial")]
+    [Migration("20210601230713_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,33 +21,12 @@ namespace Application.Migrations
                 .HasAnnotation("ProductVersion", "5.0.6")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Aplication.Model.Caixa", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Descricao")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Caixas");
-                });
-
             modelBuilder.Entity("Aplication.Model.Movimento", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CaixaId")
-                        .HasColumnType("int");
-
-                    b.Property<long?>("CaixaId1")
-                        .HasColumnType("bigint");
 
                     b.Property<DateTime>("DataHora")
                         .HasColumnType("datetime2");
@@ -60,18 +39,7 @@ namespace Application.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CaixaId1");
-
                     b.ToTable("Movimentos");
-                });
-
-            modelBuilder.Entity("Aplication.Model.Movimento", b =>
-                {
-                    b.HasOne("Aplication.Model.Caixa", "Caixa")
-                        .WithMany()
-                        .HasForeignKey("CaixaId1");
-
-                    b.Navigation("Caixa");
                 });
 #pragma warning restore 612, 618
         }

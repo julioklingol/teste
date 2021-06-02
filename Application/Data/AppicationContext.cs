@@ -14,29 +14,20 @@ namespace Application.Data
         {
         }
 
-        public DbSet<Caixa> Caixas { get; set; }
-
         public DbSet<Movimento> Movimentos { get; set; }
-
-        /*
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer();
-        }
-        */
 
         public override int SaveChanges()
         {
-            foreach (var entry in ChangeTracker.Entries().Where(prop => prop.Entity.GetType().GetProperty("DataCadastro") != null))
+            foreach (var entry in ChangeTracker.Entries().Where(prop => prop.Entity.GetType().GetProperty("DataHora") != null))
             {
                 if (entry.State == EntityState.Added)
                 {
-                    entry.Property("DataCadastro").CurrentValue = DateTime.Now;
+                    entry.Property("DataHora").CurrentValue = DateTime.Now;
                 }
 
                 if (entry.State == EntityState.Modified)
                 {
-                    entry.Property("DataCadastro").IsModified = false;
+                    entry.Property("DataHora").IsModified = false;
                 }
             }
             return base.SaveChanges();

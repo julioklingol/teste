@@ -8,11 +8,8 @@ namespace Aplication.Model
     {
         public Int64 Id { get; set; }
 
-        public Caixa Caixa { get; set; }
-        public Int32 CaixaId { get; set; }
-
-        public Double? Entrada { get; set; }
-        public Double? Saida { get; set; }
+        public Decimal? Entrada { get; set; } = 0;
+        public Decimal? Saida { get; set; } = 0;
 
         public DateTime DataHora { get; set; }
 

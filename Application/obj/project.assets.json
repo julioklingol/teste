@@ -1619,6 +1619,16 @@
         "runtime": {
           "bin/placeholder/Aplication.Domain.dll": {}
         }
+      },
+      "Aplication.Service/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/Aplication.Service.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Aplication.Service.dll": {}
+        }
       }
     }
   },
@@ -6033,11 +6043,17 @@
       "type": "project",
       "path": "../Aplication.Model/Aplication.Domain.csproj",
       "msbuildProject": "../Aplication.Model/Aplication.Domain.csproj"
+    },
+    "Aplication.Service/1.0.0": {
+      "type": "project",
+      "path": "../Aplication.Service/Aplication.Service.csproj",
+      "msbuildProject": "../Aplication.Service/Aplication.Service.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
       "Aplication.Domain >= 1.0.0",
+      "Aplication.Service >= 1.0.0",
       "Dapper >= 2.0.90",
       "Microsoft.EntityFrameworkCore >= 5.0.6",
       "Microsoft.EntityFrameworkCore.Design >= 5.0.6",
@@ -6083,6 +6099,9 @@
           "projectReferences": {
             "D:\\Checkouts\\Desafio\\teste\\Aplication.Model\\Aplication.Domain.csproj": {
               "projectPath": "D:\\Checkouts\\Desafio\\teste\\Aplication.Model\\Aplication.Domain.csproj"
+            },
+            "D:\\Checkouts\\Desafio\\teste\\Aplication.Service\\Aplication.Service.csproj": {
+              "projectPath": "D:\\Checkouts\\Desafio\\teste\\Aplication.Service\\Aplication.Service.csproj"
             }
           }
         }
