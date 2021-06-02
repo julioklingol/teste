@@ -32,7 +32,14 @@ namespace Application.Controllers
             _configuration = configuration;
         }
 
-        
+        /// <summary>
+        /// Api para efetuar o pagamento da compra
+        ///     Faz o registro do pagamento em banco de dados e retorna o troco devido
+        /// </summary>
+        /// <param name="request">Objeto Json com Valor da Compra, Valor Pago e Token de Acesso para Seguraça.
+        /// Informe para teste 1234
+        /// </param>
+        /// <returns>Retorna objeto com dados do troco</returns>
         [HttpPost]
         [Route("Pagar")]
         public PDV_PagarResponseModel Pagar(PDV_PagarRequestModel request)
@@ -65,6 +72,10 @@ namespace Application.Controllers
             return response;
         }
 
+        /// <summary>
+        /// Retorno os movimentos de entrada e saida realizados utilizando Dapper
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("GetMovimentos")]
         public IEnumerable<Movimento> GetMovimentos()
@@ -75,6 +86,10 @@ namespace Application.Controllers
             }
         }
 
+        /// <summary>
+        /// Retorna o total do saldo atual utilizando Dapper
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("GetSaldo")]
         public decimal GetSaldo()
