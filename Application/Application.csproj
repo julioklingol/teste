@@ -24,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Aplication.Dao\Aplication.Data.csproj" />
     <ProjectReference Include="..\Aplication.Model\Aplication.Domain.csproj" />
     <ProjectReference Include="..\Aplication.Service\Aplication.Service.csproj" />
   </ItemGroup>

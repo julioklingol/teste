@@ -11,6 +11,7 @@ using Application.ModelView;
 using Aplication.Model;
 using Microsoft.Extensions.Configuration;
 using Aplication.Service;
+using Aplication.Data.Repositories;
 
 namespace Application.Controllers
 {
@@ -42,25 +43,12 @@ namespace Application.Controllers
             {
                 request.Valida(_configuration);
 
+                //Faz o calculo do troco no prórpio objeto de request
                 Decimal troco = request.GetTroco();
 
-                using (var transaction = _db.Database.BeginTransaction())
+                using (var repository = new MovimentoRepository(_db))
                 {
-                    _db.Set<Movimento>().Add(new Movimento
-                    {
-                        Entrada = request.Valor_Compra
-                    });
-
-                    if (troco > 0)
-                    {
-                        _db.Set<Movimento>().Add(new Movimento
-                        {
-                            Saida = troco
-                        });
-                    }
-                    _db.SaveChanges();
-
-                    transaction.Commit();
+                    repository.CriaMovimentos(request.Valor_Pago, troco);
                 }
 
                 response.Ok = true;
@@ -81,16 +69,20 @@ namespace Application.Controllers
         [Route("GetMovimentos")]
         public IEnumerable<Movimento> GetMovimentos()
         {
-            var conexao = _db.Database.GetDbConnection();
-            return conexao.Query<Movimento>("select * from movimentos");
+            using (var repository = new MovimentoRepository(_db))
+            {
+                return repository.GetMovimentos();
+            }
         }
 
         [HttpGet]
         [Route("GetSaldo")]
         public decimal GetSaldo()
         {
-            var conexao = _db.Database.GetDbConnection();
-            return conexao.ExecuteScalar<decimal>("select sum(entrada) - sum(saida) from movimentos");
+            using (var repository = new MovimentoRepository(_db))
+            {
+                return repository.GetSaldo();
+            }
         }
 
     }
